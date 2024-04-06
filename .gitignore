@@ -1,7 +1,19 @@
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
 .DS_Store
+.idea
+
+# engineereing
 node_modules
 .turbo
-*.log
 dist
 dist-ssr
 *.local
@@ -9,3 +21,4 @@ dist-ssr
 .cache
 server/dist
 public/dist
+.eslintcache
