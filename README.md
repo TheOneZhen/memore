@@ -11,3 +11,5 @@ Its role to combine the functionalities from various packages and package them i
 ## packages
 
 UI and some utils like markdown parser, cahcing.
+
+By refining the grranularity of packages, we can maximize support for Turbo performance.
