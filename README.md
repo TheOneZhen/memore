@@ -1,33 +1,13 @@
-# `Turborepo` Vite starter
+# Why `Turborepo`
 
-This is an official starter Turborepo.
+I don't know, NB maybe.
 
-## Using this example
+# Architecture
 
-Run the following command:
+## apps
 
-```sh
-npx create-turbo@latest -e with-vite
-```
+Its role to combine the functionalities from various packages and package them into installers for different platforrms. Packages based on Node.js engines for apps that provide functionality to request user accounts from GitHub.
 
-## What's inside?
+## packages
 
-This Turborepo includes the following packages and apps:
-
-### Apps and Packages
-
-- `docs`: a vanilla [vite](https://vitejs.dev) ts app
-- `web`: another vanilla [vite](https://vitejs.dev) ts app
-- `@repo/ui`: a stub component & utility library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: shared `eslint` configurations
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+UI and some utils like markdown parser, cahcing.
