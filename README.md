@@ -18,6 +18,7 @@ By refining the grranularity of packages, we can maximize support for Turbo perf
 <!-- 在不同设备上，保持用户仅使用一件外设（鼠标、键盘、绘图笔等）即可完成文档工具的切换 -->
 1. 支持markdown解析
 2. 支持mermaid语法
+   1. 支持context，拆分变量，可以在多个模块中使用
 3. 支持思维导图及各类图表
 4. 支持绘图
 
@@ -25,3 +26,13 @@ By refining the grranularity of packages, we can maximize support for Turbo perf
 ## 第一期功能规划
 
 1. 富文本可视化编辑
+
+
+如何更好的展示markdown内容
+
+1. 编辑与预览分开
+2. 所见及所得
+
+
+
+1. 
