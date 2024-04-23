@@ -2,6 +2,7 @@
   "[markdown]": {
     "editor.tabSize": 4
   },
+  "markdown.extension.list.indentationSize": "inherit",
   "eslint.workingDirectories": [
     {
       "mode": "auto"
