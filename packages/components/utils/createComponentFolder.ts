@@ -2,16 +2,17 @@ import minimist from 'minimist'
 import path from 'node:path'
 import fs from 'node:fs'
 import prompts from 'prompts'
-import rimraf from 'rimraf'
+import { rimraf } from 'rimraf'
 import { upperFirst } from 'lodash-es'
 
 void (async function () {
   const { name: componentName } = minimist<{
     name?: string
   }>(process.argv.slice(2), { string: 'name' })
-  const dirname = path.resolve(__dirname, componentName)
-
+  
   if (componentName === undefined) throw Error('No Component Name!')
+  
+  const dirname = path.resolve(__dirname, componentName)
 
   if (fs.existsSync(dirname)) {
     const { value } = await prompts([
@@ -28,7 +29,7 @@ void (async function () {
     ])
 
     if (value === false) return
-    await rimraf.rimraf(dirname)
+    await rimraf(dirname)
   }
 
   fs.mkdirSync(dirname)
