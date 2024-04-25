@@ -1,18 +1,17 @@
-import minimist from 'minimist'
-import path from 'node:path'
-import fs from 'node:fs'
-import prompts from 'prompts'
-import { rimraf } from 'rimraf'
-import { upperFirst } from 'lodash-es'
+
+const minimist = require("minimist")
+const prompts = require("prompts")
+const path = require("node:path")
+const fs = require('node:fs')
+const { rimraf } = require("rimraf")
+const { upperFirst } = require("lodash")
 
 void (async function () {
-  const { name: componentName } = minimist<{
-    name?: string
-  }>(process.argv.slice(2), { string: 'name' })
+  const { name: componentName } = minimist(process.argv.slice(2), { string: 'name' })
   
   if (componentName === undefined) throw Error('No Component Name!')
   
-  const dirname = path.resolve(__dirname, componentName)
+  const dirname = path.resolve(process.cwd(), 'src', componentName)
 
   if (fs.existsSync(dirname)) {
     const { value } = await prompts([
