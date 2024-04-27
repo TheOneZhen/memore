@@ -11,7 +11,7 @@ void (async function () {
   
   if (componentName === undefined) throw Error('No Component Name!')
   
-  const dirname = path.resolve(process.cwd(), 'src', componentName)
+  const dirname = path.resolve(path.resolve(__dirname, '..'), 'src', componentName)
 
   if (fs.existsSync(dirname)) {
     const { value } = await prompts([

@@ -20,6 +20,7 @@ By refining the grranularity of packages, we can maximize support for Turbo perf
 - What you see is what you get.
 
 ## function list
+
 ### 支持用户登录Git（流程）
 
 1. **登录检测**。用户打开memore，检测本地是否存在`.git.record.json`：
