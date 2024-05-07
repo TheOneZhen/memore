@@ -7,8 +7,7 @@
     "lint-staged": "eslint --cache --ext .js,.ts,.tsx . --ignore-path .gitignore",
     "test": "vitest",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "addApp": "turbo gen --name=$1 --type='app'",
-    "addPackage": "turbo gen --name=$1 --type='package'"
+    "addWorkspace": "node ./scripts/createWorkspace.js"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
