@@ -25,7 +25,7 @@ export default defineConfig({
       }
     }
   },
-  renderer: { // 这里继续沿用WEB开发习惯
+  renderer: { // keep web dev style
     root: 'src',
     resolve: {
       alias: {
