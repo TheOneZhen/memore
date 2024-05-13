@@ -1,11 +1,15 @@
-import AddNewRepo from './AddNewRepo'
+import React from 'react'
+import Search, { SearchProps } from './Search'
 
-export type RepoData = {}
-
-export type ExplorerPropsType = {
-  data: RepoData
+export interface ExplorerProps extends React.HTMLAttributes<HTMLElement>, SearchProps {
+  requestAddNewRepo: Function
 }
 
-const Explorer = function () {
-
-}
+const Explorer = React.forwardRef<HTMLElement, ExplorerProps>(
+  (props, ref) => {
+    const { requestAddNewRepo, handleOnchange } = props
+    return (
+      <Search handleOnchange={handleOnchange} />
+    )
+  },
+)
