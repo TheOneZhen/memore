@@ -1,0 +1,53 @@
+{
+  "name": "animated-signature",
+  "version": "0.0.1",
+  "description": "This is a small tool used to generate animated signature code and its inspiration comes from @antfu's article 'Animated Svg Logo'(https://antfu.me/posts/animated-svg-logo).",
+  "keywords": [
+    "signature_pad",
+    "animation"
+  ],
+  "homepage": "https://zhenisbusy.space/stations/animated-signature",
+  "bugs": {
+    "url": "https://github.com/TheOneZhen/AnimatedSignature/issues",
+    "email": "zhenisbusy@qq.com"
+  },
+  "author": "zhenisbusy <zhenisbusy@qq.com> (https://zhenisbusy.space)",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TheOneZhen/AnimatedSignature.git"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "src",
+    "package.json",
+    "README.md"
+  ],
+  "main": "./dist/AnimatedSignature.umd.cjs",
+  "module": "./dist/AnimatedSignature.js",
+  "types": "./dist/AnimatedSignature.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/AnimatedSignature.js",
+      "require": "./dist/AnimatedSignature.umd.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=8"
+  },
+  "scripts": {
+    "start": "vite serve",
+    "build": "vite build",
+    "build:dts": "npm run build && tsc && api-extractor run --local --verbose && rimraf ./dist/src"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.39.1",
+    "rimraf": "^5.0.5",
+    "vite": "^5.0.10"
+  },
+  "peerDependencies": {
+    "signature_pad": "^4.1.7"
+  }
+}

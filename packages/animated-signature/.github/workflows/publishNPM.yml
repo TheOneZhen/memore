@@ -1,0 +1,27 @@
+on:
+  push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e v1.0. The matched version must equal to package version.
+
+name: NPM publish
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci  
+      - run: npm run build:dts
+      - run: |
+          cp package.json ./dist/package.json
+          cp README.md ./dist/README.md
+          cd dist
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

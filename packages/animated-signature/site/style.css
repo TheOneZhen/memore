@@ -1,0 +1,13 @@
+#container {
+  width: 100vw;
+}
+
+#container #buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+#container #buttons button {
+  min-width: 2rem;
+  height: 1.5rem;
+}
