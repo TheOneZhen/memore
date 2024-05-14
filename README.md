@@ -4,9 +4,8 @@ I don't know, NB maybe.
 
 # command
 
-## add local dependency: `pnpm add packageName@version --filter=workspace --workspace`
-
-## list all workspaces in JSON format: `pnpm m ls --depth -1 --json`
+- add local dependency: `pnpm add packageName@version --filter=workspace --workspace`
+- list all workspaces in JSON format: `pnpm m ls --depth -1 --json`
 
 # Architecture
 
