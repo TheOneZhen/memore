@@ -39,6 +39,7 @@
     "main-menu": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "translate": "workspace:^"
+    "translate": "workspace:^",
+    "vite-plugin-inspect": "^0.8.4"
   }
 }
