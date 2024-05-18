@@ -1,5 +1,5 @@
 {
-  "name": "main-menu",
+  "name": "function-unit",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,11 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "element-plus": "^2.7.3",
+    "vue": "^3.4.27"
   }
 }
