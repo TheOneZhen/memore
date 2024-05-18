@@ -2,10 +2,35 @@
   "[markdown]": {
     "editor.tabSize": 4
   },
-  "markdown.extension.list.indentationSize": "inherit",
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ]
+  "cSpell.words": ["Element Plus", "element-plus"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "npm.packageManager": "pnpm",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json",
+    "jsonc"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json",
+    "jsonc"
+  ],
+  "vite.devCommand": "pnpm run dev -- --",
+  "iconify.includes": ["ep"]
 }

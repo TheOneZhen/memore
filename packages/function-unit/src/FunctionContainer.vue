@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FunctionContainerProps } from '../types'
+import type { FunctionContainerProps } from '../types'
 import FunctionItem from './FunctionItem.vue'
 
 const { data, initialWidth } = defineProps<FunctionContainerProps>()

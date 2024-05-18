@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue'
 import { ElTooltip } from 'element-plus'
-import { FunctionItemProps } from '../types'
+import type { FunctionItemProps } from '../types'
 
 const { description, initialWidth, maxWidth, minWidth } =
   defineProps<FunctionItemProps>()
