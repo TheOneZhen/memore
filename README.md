@@ -35,3 +35,11 @@ By refining the grranularity of packages, we can maximize support for Turbo perf
 ## disadvantages
 
 ### The division of unit functions is somewhat vague and does not take into account the reuse of smaller units
+
+# todo
+> 先根据当前阶段的需求，逐渐补充组件库，等待内容补充完毕，再进行组件分类，进而完成packages层的组件
+
+
+- 需要一个容器，控制内容的渐入渐出
+- grid布局组件，提供内容添加
+

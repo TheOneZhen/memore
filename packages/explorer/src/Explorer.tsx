@@ -1,15 +1,8 @@
-import React from 'react'
-import Search, { SearchProps } from './Search'
+import React from "react"
 
-export interface ExplorerProps extends React.HTMLAttributes<HTMLElement>, SearchProps {
-  requestAddNewRepo: Function
+const Explorer = function () {
+
 }
 
-const Explorer = React.forwardRef<HTMLElement, ExplorerProps>(
-  (props, ref) => {
-    const { requestAddNewRepo, handleOnchange } = props
-    return (
-      <Search handleOnchange={handleOnchange} />
-    )
-  },
-)
+
+export default Explorer
