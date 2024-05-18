@@ -1,4 +1,4 @@
 import FunctionContainer from './src/FunctionContainer.vue'
 
-export * from './types/'
+export * from './typings'
 export default FunctionContainer

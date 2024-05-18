@@ -22,17 +22,17 @@
     "types": [],
     "rootDir": ".",
     "paths": {
-      "@apps": ["apps/**/*"],
-      "@packages": ["packages/**/*"],
-      "@composite": ["composite/**/*"]
+      "@apps": ["apps/*"],
+      "@packages": ["packages/*"],
+      "@composite": ["composite/*"]
     }
   },
   "include": [
-    "packages/**/*",
-    "apps/**/*",
-    "composite/**/*",
-    "composite/*/src/*.vue",
-    "packages/*/src/*.vue",
-    "apps/*/src/*.vue"
-  ]
+    "packages/**/*.ts",
+    "apps/**/*.ts",
+    "composite/**/*.ts",
+    "**/src/**/*.vue",
+    "**/typings/*.d.ts"
+  ],
+  "exclude": ["node_modules", "**/dist", "**/__test__/**/*"]
 }
