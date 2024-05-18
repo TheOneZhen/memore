@@ -1,6 +1,5 @@
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
-import react from '@vitejs/plugin-react'
 /**
  * Electron-vite provides many default configurations, and if you don't pay
  * attention to them, it may cause some issues.
@@ -13,31 +12,31 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()],
     build: {
       lib: {
-        entry: 'main/index.ts'
-      }
-    }
+        entry: 'main/index.ts',
+      },
+    },
   },
   preload: {
     plugins: [externalizeDepsPlugin()],
     build: {
       lib: {
-        entry: 'preload/index.ts'
-      }
-    }
+        entry: 'preload/index.ts',
+      },
+    },
   },
   renderer: {
     // keep web dev style
     root: 'src',
     resolve: {
       alias: {
-        '@': resolve('src')
-      }
+        '@': resolve('src'),
+      },
     },
     build: {
       rollupOptions: {
-        input: 'index.html'
-      }
+        input: 'index.html',
+      },
     },
-    plugins: [react()]
-  }
+    plugins: [],
+  },
 })

@@ -30,7 +30,5 @@
     "markdown",
     "json",
     "jsonc"
-  ],
-  "vite.devCommand": "pnpm run dev -- --",
-  "iconify.includes": ["ep"]
+  ]
 }
