@@ -26,7 +26,8 @@
     "turbo": "latest",
     "typescript": "^5.3.3",
     "vite": "^5.2.11",
-    "vitest": "^1.4.0"
+    "vitest": "^1.4.0",
+    "vue": "^3.4.27"
   },
   "packageManager": "pnpm@8.9.0",
   "dependencies": {
