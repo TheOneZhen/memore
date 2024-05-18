@@ -31,7 +31,6 @@
     "packages/**/*.ts",
     "apps/**/*.ts",
     "composite/**/*.ts",
-    "**/src/**/*.vue",
     "**/typings/*.d.ts"
   ],
   "exclude": ["node_modules", "**/dist", "**/__test__/**/*"]

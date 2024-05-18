@@ -3,8 +3,7 @@ import { defineProps, ref } from 'vue'
 import { ElTooltip } from 'element-plus'
 import type { FunctionItemProps } from '../typings'
 
-const { description, initialWidth, maxWidth, minWidth } =
-  defineProps<FunctionItemProps>()
+const { description, initialWidth } = defineProps<FunctionItemProps>()
 
 const currentWidth = ref(initialWidth)
 </script>
@@ -12,7 +11,7 @@ const currentWidth = ref(initialWidth)
 <template>
   <ElTooltip :content="description">
     <div class="function-item" :style="{ width: currentWidth }">
-      <slot></slot>
+      <slot />
     </div>
   </ElTooltip>
 </template>

@@ -12,5 +12,5 @@ export interface FunctionContainerProps {
   /** initial width of item button */
   initialWidth: FunctionItemProps['initialWidth']
   /** add a new item */
-  addNewItem: Function
+  addNewItem: () => void
 }

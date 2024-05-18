@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { FunctionContainerProps } from '../typings'
 import FunctionItem from './FunctionItem.vue'
+import type { FunctionContainerProps } from '../typings'
 
 const { data, initialWidth } = defineProps<FunctionContainerProps>()
 </script>
@@ -8,11 +8,11 @@ const { data, initialWidth } = defineProps<FunctionContainerProps>()
 <template>
   <div class="function-container">
     <FunctionItem
-      :initial-width="initialWidth"
       v-for="(item, index) in data"
       :key="index"
+      :initial-width="initialWidth"
     >
-      <slot :item="item"></slot>
+      <slot :item="item" />
     </FunctionItem>
   </div>
 </template>
