@@ -22,11 +22,17 @@
     "types": [],
     "rootDir": ".",
     "paths": {
-      "@apps": ["apps/*/src"],
-      "@packages": ["packages/*/src"]
+      "@apps": ["apps/**/*"],
+      "@packages": ["packages/**/*"],
+      "@composite": ["composite/**/*"]
     }
   },
   "include": [
-    "packages/*/src"
+    "packages/**/*",
+    "apps/**/*",
+    "composite/**/*",
+    "composite/*/src/*.vue",
+    "packages/*/src/*.vue",
+    "apps/*/src/*.vue"
   ]
 }

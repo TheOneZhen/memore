@@ -1,5 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
+import viteVuePlugin from '@vitejs/plugin-vue'
+
 /**
  * Electron-vite provides many default configurations, and if you don't pay
  * attention to them, it may cause some issues.
@@ -37,6 +39,6 @@ export default defineConfig({
         input: 'index.html',
       },
     },
-    plugins: [],
+    plugins: [viteVuePlugin()],
   },
 })
