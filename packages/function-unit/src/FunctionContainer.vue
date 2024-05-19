@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import FunctionItem from './FunctionItem.vue'
 import type { FunctionContainerProps } from '../typings'
-
+/**
+ * 样式效果预览
+ * 用户可以通过手势、外设控制内容缩放程度（目前仅支持当前组件，之后蔓延到其他组件）
+ */
 const { data, initialWidth } = defineProps<FunctionContainerProps>()
 </script>
 

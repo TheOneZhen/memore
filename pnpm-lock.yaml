@@ -64,6 +64,8 @@ importers:
         specifier: ^3.4.27
         version: 3.4.27(typescript@5.3.3)
 
+  apps/web: {}
+
   apps/win:
     dependencies:
       '@electron-toolkit/preload':
