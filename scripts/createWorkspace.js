@@ -1,6 +1,6 @@
-const minimist = require('minimist')
 const fs = require('node:fs')
 const path = require('node:path')
+const minimist = require('minimist')
 const prompts = require('prompts')
 const { rimraf } = require('rimraf')
 
@@ -32,12 +32,15 @@ void (async function () {
       },
     ])
 
-    if (value === false) return;
+    if (value === false) return
 
     await rimraf(dirname)
   }
   // create directory
   fs.mkdirSync(dirname)
   // update pnpm-workspace.yaml
-  fs.appendFileSync(path.resolve(root, 'pnpm-workspace.yaml'), `  - "${workspaceName}/*"\n`)
+  fs.appendFileSync(
+    path.resolve(root, 'pnpm-workspace.yaml'),
+    `  - "${workspaceName}/*"\n`,
+  )
 })()
