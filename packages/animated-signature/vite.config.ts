@@ -1,31 +1,32 @@
-import { resolve } from "node:path";
-import { UserConfig, defineConfig } from "vite";
+import { resolve } from 'node:path'
+import { defineConfig } from 'vite'
+import type { UserConfig } from 'vite'
 
 export default defineConfig(({ command }) => {
-  const config: UserConfig = {};
+  const config: UserConfig = {}
 
-  if (command === "serve") {
+  if (command === 'serve') {
     config.build = {
       rollupOptions: {
         input: {
-          site: resolve(__dirname, "site/index.html"),
+          site: resolve(__dirname, 'site/index.html'),
         },
       },
-    };
+    }
     config.server = {
-      open: '/site/index.html'
+      open: '/site/index.html',
     }
   }
 
-  if (command === "build") {
+  if (command === 'build') {
     config.build = {
       lib: {
-        entry: resolve(__dirname, "src/animatedSignature.ts"),
-        name: "animated-signature",
-        fileName: "AnimatedSignature",
+        entry: resolve(__dirname, 'src/animatedSignature.ts'),
+        name: 'animated-signature',
+        fileName: 'AnimatedSignature',
       },
-    };
+    }
   }
 
-  return config;
-});
+  return config
+})
