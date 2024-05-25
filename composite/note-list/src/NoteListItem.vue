@@ -1,12 +1,7 @@
 <script lang="ts" setup>
 import { FunctionItem } from 'function-unit'
-
-const { icon, title, description, remotes, locals } = defineProps<{
-  title: string
-  description: string
-  remotes: number
-  locals: number
-}>()
+import type { NoteListItemProps } from '../typings/'
+const { title, description, remotes, locals } = defineProps<NoteListItemProps>()
 </script>
 
 <template>
@@ -15,6 +10,7 @@ const { icon, title, description, remotes, locals } = defineProps<{
       <el-icon
         icon-line-md:clipboard-twotone-to-clipboard-twotone-check-transition
       />
+      <span>{{ title }}</span>
     </slot>
   </function-item>
 </template>
