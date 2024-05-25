@@ -27,11 +27,6 @@
       "@composite": ["composite/*"]
     }
   },
-  "include": [
-    "packages/**/*.ts",
-    "apps/**/*.ts",
-    "composite/**/*.ts",
-    "**/typings/*.d.ts"
-  ],
+  "include": ["packages", "apps", "composite"],
   "exclude": ["node_modules", "**/dist", "**/__test__/**/*"]
 }
