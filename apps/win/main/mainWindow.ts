@@ -1,5 +1,5 @@
-import { BrowserWindow, shell } from 'electron'
 import { join } from 'node:path'
+import { BrowserWindow, shell } from 'electron'
 import { is } from '@electron-toolkit/utils'
 
 export function createMainWindow() {
@@ -8,8 +8,9 @@ export function createMainWindow() {
     height: 670,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: true
-    }
+      sandbox: true,
+    },
+    frame: false,
   })
 
   mainWindow.on('ready-to-show', () => mainWindow.show())
@@ -19,9 +20,11 @@ export function createMainWindow() {
     return { action: 'deny' }
   })
 
-  if (is.dev && process.env['ELECTRON_RENDERER_URL'])
+  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  else mainWindow.loadFile(join(__dirname, '../index.html'))
+    mainWindow.webContents.openDevTools({ mode: 'right' })
+    // load vue devtools
+  } else mainWindow.loadFile(join(__dirname, '../index.html'))
 
   return mainWindow
 }

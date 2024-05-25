@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
 import viteVuePlugin from '@vitejs/plugin-vue'
+import UnoCSS from 'unocss/vite'
 
 /**
  * Electron-vite provides many default configurations, and if you don't pay
@@ -11,7 +12,10 @@ import viteVuePlugin from '@vitejs/plugin-vue'
  */
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()],
+    plugins: [
+      externalizeDepsPlugin(),
+      UnoCSS({ configFile: '../../uno.config.ts' }),
+    ],
     build: {
       lib: {
         entry: 'main/index.ts',

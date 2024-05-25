@@ -2,9 +2,9 @@
   "name": "win",
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
-  "main": "./out/main/index.js",
-  "author": "example.com",
   "homepage": "https://electron-vite.org",
+  "author": "example.com",
+  "main": "./out/main/index.js",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
@@ -34,6 +34,7 @@
     "electron-builder": "^24.9.1",
     "electron-vite": "^2.0.0",
     "translate": "workspace:^",
-    "vite-plugin-inspect": "^0.8.4"
+    "vite-plugin-inspect": "^0.8.4",
+    "window-bar": "workspace:^"
   }
 }
