@@ -2,7 +2,6 @@
 import { FunctionItem } from 'function-unit'
 
 const { icon, title, description, remotes, locals } = defineProps<{
-  icon?: string
   title: string
   description: string
   remotes: number
@@ -11,7 +10,13 @@ const { icon, title, description, remotes, locals } = defineProps<{
 </script>
 
 <template>
-  <function-item :description="description" />
+  <function-item :description="description">
+    <slot name="icon">
+      <el-icon
+        icon-line-md:clipboard-twotone-to-clipboard-twotone-check-transition
+      />
+    </slot>
+  </function-item>
 </template>
 
 <style lang="scss"></style>

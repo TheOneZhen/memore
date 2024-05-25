@@ -5,7 +5,10 @@ const { FunctionItem } = FunctionUnit
 
 <template>
   <div class="window-bar">
-    <function-item>this is test pahse!</function-item>
+    <function-item>
+      <div style="min-width: 100px">this is test pahse!</div>
+      <div style="min-width: 100px">this is test pahse!asdasdasdasdasd</div>
+    </function-item>
   </div>
 </template>
 

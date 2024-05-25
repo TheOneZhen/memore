@@ -1,30 +1,46 @@
 <script lang="ts" setup>
-import { defineProps, onMounted, ref } from 'vue'
+import { defineProps, ref } from 'vue'
 import { ElTooltip } from 'element-plus'
+import { useElementSize, watchDebounced } from '@vueuse/core'
 import type { FunctionItemProps } from '../typings'
 /**
  * 样式效果预览
  * 通过控制currentWidth来控制组件的宽度，然后借助外部container的布局来达到交互效果
  */
 const { description, initialWidth } = defineProps<FunctionItemProps>()
-const fixableParent = ref<HTMLDivElement>()
 const currentWidth = ref(initialWidth)
+const fixableParent = ref<HTMLDivElement>()
+const { width: parentWidth } = useElementSize(fixableParent)
 /**
  * 计算parent宽度和children最小宽度之和
  *  1. 如果前`i`个child最小宽度之和 <= parent宽度
  *    1. parent使用flex布局
  *  2. 否则第`i`个child的`display: none;`
  */
-function controlChildrenDisplay() {
-  const parent = fixableParent.value
-  if (!parent) return
-  const { children } = parent
-  if (children.length === 0) return
-  const parentWidth = parent.width
-}
 
-onMounted(() => {
-  controlChildrenDisplay()
+watchDebounced(parentWidth, (newParentWidth) => {
+  const parent = fixableParent.value
+
+  if (!parent) return
+
+  const children = Array.from(parent.children)
+
+  if (children.length === 0) return
+  let childrenWidthSum = 0
+  let noneSwitch = false
+  for (const child of children) {
+    const style = (child as HTMLElement).style
+    const childWidth =
+      Number.parseInt(
+        style.getPropertyValue('min-width') || style.getPropertyValue('width'),
+      ) || 0
+    if (!childWidth) continue
+    childrenWidthSum += childWidth
+    if (childrenWidthSum > newParentWidth) noneSwitch = true
+    else noneSwitch = false
+    if (noneSwitch === true) style.position = 'absolute'
+    else style.display = 'relative'
+  }
 })
 </script>
 
