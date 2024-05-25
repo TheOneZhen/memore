@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import FunctionUnit from 'function-unit'
-const { FunctionItem } = FunctionUnit
+import { FunctionItem } from 'function-unit'
 </script>
 
 <template>
