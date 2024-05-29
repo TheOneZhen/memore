@@ -1,8 +1,8 @@
 export interface FunctionItemProps {
   description: string
-  initialWidth: number
-  maxWidth: number
-  minWidth: number
+  initialWidth?: number
+  maxWidth?: number
+  minWidth?: number
 }
 
 export interface FunctionContainerProps {

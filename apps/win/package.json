@@ -20,6 +20,9 @@
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux"
   },
+  "build": {
+    "appId": "memore"
+  },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
@@ -31,10 +34,10 @@
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@vitejs/plugin-vue": "^5.0.4",
     "electron": "^28.2.0",
-    "electron-builder": "^24.9.1",
+    "electron-builder": "^24.13.3",
     "electron-vite": "^2.0.0",
+    "layout": "workspace:^",
     "translate": "workspace:^",
-    "vite-plugin-inspect": "^0.8.4",
-    "window-bar": "workspace:^"
+    "vite-plugin-inspect": "^0.8.4"
   }
 }

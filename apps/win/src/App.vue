@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import WindowBar from 'window-bar'
+import PcLayout from 'layout'
 import TestPhase from './TestPhase.vue'
 </script>
 
 <template>
-  <WindowBar />
+  <pc-layout />
   <div>this is tetst</div>
   <TestPhase />
 </template>
