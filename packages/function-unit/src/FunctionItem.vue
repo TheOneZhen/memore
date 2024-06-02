@@ -1,61 +1,56 @@
 <script lang="ts" setup>
-import { defineProps, inject, ref } from 'vue'
-import { ElTooltip } from 'element-plus'
-import { useElementSize, watchDebounced } from '@vueuse/core'
+import { inject, ref } from 'vue'
+import { watchDebounced } from '@vueuse/core'
 import { ContainerSizeKey } from './common'
 import type { FunctionItemProps } from '../'
-/**
- * 样式效果预览
- * 通过控制currentWidth来控制组件的宽度，然后借助外部container的布局来达到交互效果
- */
-const { description, initialWidth = 0 } = defineProps<FunctionItemProps>()
-const currentWidth = ref(initialWidth)
-const fixableParent = ref<HTMLDivElement>()
-const { width: parentWidth } = useElementSize(fixableParent)
-const size = inject(ContainerSizeKey, ref(1))
-/**
- * 计算parent宽度和children最小宽度之和
- *  1. 如果前`i`个child最小宽度之和 <= parent宽度
- *    1. parent使用flex布局
- *  2. 否则第`i`个child的`display: none;`
- */
 
-watchDebounced(parentWidth, (newParentWidth) => {
-  const parent = fixableParent.value
+const {
+  initial = 1,
+  max = Number.POSITIVE_INFINITY,
+  min = 1,
+  isConstant = false,
+} = defineProps<FunctionItemProps>()
+const parentRef = ref<HTMLDivElement>()
+const size = inject(ContainerSizeKey, ref(initial))
 
-  if (!parent) return
+isConstant &&
+  watchDebounced(
+    size,
+    (newSize) => {
+      newSize = Math.max(min, Math.min(newSize, max))
+      const parentDOM = parentRef.value
 
-  const children = Array.from(parent.children)
+      if (!parentDOM) return
 
-  if (children.length === 0) return
-  let childrenWidthSum = 0
-  let noneSwitch = false
-  for (const child of children) {
-    const style = (child as HTMLElement).style
-    const childWidth =
-      Number.parseInt(
-        style.getPropertyValue('min-width') || style.getPropertyValue('width'),
-      ) || 0
-    if (!childWidth) continue
-    childrenWidthSum += childWidth
-    if (childrenWidthSum > newParentWidth) noneSwitch = true
-    else noneSwitch = false
-    if (noneSwitch === true) style.position = 'absolute'
-    else style.display = 'relative'
-  }
-})
+      const childrenDOM = Array.from(parentDOM.children)
+
+      if (childrenDOM.length === 0) return
+
+      childrenDOM.forEach((dom, index) => {
+        Object.assign(
+          (dom as HTMLElement).style,
+          index >= newSize
+            ? {
+                flexBasis: '0',
+                overflow: 'hidden',
+              }
+            : {
+                flexBasis: 'auto',
+              },
+        )
+      })
+    },
+    {
+      debounce: 500,
+      maxWait: 1000,
+    },
+  )
 </script>
 
 <template>
-  <ElTooltip :content="description">
-    <div
-      ref="fixableParent"
-      class="function-item"
-      :style="{ width: currentWidth }"
-    >
-      <slot />
-    </div>
-  </ElTooltip>
+  <div ref="parentRef" class="function-item">
+    <slot />
+  </div>
 </template>
 
 <style lang="scss">
@@ -64,9 +59,9 @@ watchDebounced(parentWidth, (newParentWidth) => {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  transition: width 1s;
+  transition: display 0.5s;
   // https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function
   transition-timing-function: cubic-bezier(0, 1, 0, 2);
-  transition-delay: 0.5s;
+  transition-delay: 0.2s;
 }
 </style>
