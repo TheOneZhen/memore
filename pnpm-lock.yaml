@@ -125,6 +125,9 @@ importers:
 
   composite/note-list:
     devDependencies:
+      event-bus:
+        specifier: workspace:^
+        version: link:../../packages/event-bus
       function-unit:
         specifier: workspace:^
         version: link:../../packages/function-unit
@@ -141,6 +144,8 @@ importers:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
+
+  packages/event-bus: {}
 
   packages/function-unit: {}
 
