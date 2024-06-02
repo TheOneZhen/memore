@@ -1,22 +1,19 @@
 <script lang="ts" setup>
-import FunctionItem from './FunctionItem.vue'
-import type { FunctionContainerProps } from '../typings'
+import { provide, readonly, ref } from 'vue'
+import { ContainerSizeKey } from './common'
+
+const size = ref(1)
+
+provide(ContainerSizeKey, readonly(size))
 /**
- * 样式效果预览
- * 用户可以通过手势、外设控制内容缩放程度（目前仅支持当前组件，之后蔓延到其他组件）
+ * 用户可以通过外设操作，改变size值。
+ * 需要对不同平台优化
  */
-const { data, initialWidth } = defineProps<FunctionContainerProps>()
 </script>
 
 <template>
   <div class="function-container">
-    <FunctionItem
-      v-for="(item, index) in data"
-      :key="index"
-      :initial-width="initialWidth"
-    >
-      <slot :item="item" />
-    </FunctionItem>
+    <slot />
   </div>
 </template>
 

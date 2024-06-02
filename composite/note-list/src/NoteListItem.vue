@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { FunctionItem } from 'function-unit'
-import type { NoteListItemProps } from '../typings/'
+import type { NoteListItemProps } from '../'
+
 const { title, description, icon, id, openNote } =
   defineProps<NoteListItemProps>()
 </script>

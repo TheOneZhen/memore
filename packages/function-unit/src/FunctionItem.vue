@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, inject, ref } from 'vue'
 import { ElTooltip } from 'element-plus'
 import { useElementSize, watchDebounced } from '@vueuse/core'
-import type { FunctionItemProps } from '../typings'
+import { ContainerSizeKey } from './common'
+import type { FunctionItemProps } from '../'
 /**
  * 样式效果预览
  * 通过控制currentWidth来控制组件的宽度，然后借助外部container的布局来达到交互效果
@@ -11,6 +12,7 @@ const { description, initialWidth = 0 } = defineProps<FunctionItemProps>()
 const currentWidth = ref(initialWidth)
 const fixableParent = ref<HTMLDivElement>()
 const { width: parentWidth } = useElementSize(fixableParent)
+const size = inject(ContainerSizeKey, ref(1))
 /**
  * 计算parent宽度和children最小宽度之和
  *  1. 如果前`i`个child最小宽度之和 <= parent宽度

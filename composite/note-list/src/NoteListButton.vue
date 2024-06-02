@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 import { FunctionItem } from 'function-unit'
 import { ElIcon } from 'element-plus'
-
-const title = 'note list'
+import { prefix } from './common'
 </script>
 
 <template>
-  <function-item :description="title">
+  <function-item :description="prefix">
     <el-icon icon-line-md:menu />
-    <span>{{ title }}</span>
+    <span>{{ prefix }}</span>
   </function-item>
 </template>
