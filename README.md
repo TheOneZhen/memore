@@ -19,10 +19,9 @@ UI and some utils like markdown parser, cahcing.
 
 By refining the grranularity of packages, we can maximize support for Turbo performance.
 
-## this
+## Component communication mode
 
-- Users use one external device to edit content on different platforms.
-- What you see is what you get.
+Event Bus
 
 ## function list
 
@@ -35,3 +34,8 @@ By refining the grranularity of packages, we can maximize support for Turbo perf
 ## disadvantages
 
 ### The division of unit functions is somewhat vague and does not take into account the reuse of smaller units
+
+# this
+
+- Users use one external device to edit content on different platforms.
+- What you see is what you get.
