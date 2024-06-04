@@ -1,6 +1,6 @@
-const minimist = require('minimist')
 const fs = require('node:fs')
 const path = require('node:path')
+const minimist = require('minimist')
 const prompts = require('prompts')
 /**
  * The purpose of this script is to add internal dependencies to the application.
@@ -82,7 +82,7 @@ async function selection() {
       type: 'select',
       name: 'workspace',
       message: 'Please select workspace:',
-      choices: workspaceNames.map(item => ({
+      choices: workspaceNames.map((item) => ({
         title: item,
         value: item,
       })),
