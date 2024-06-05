@@ -14,7 +14,6 @@
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
     "build": "npm run typecheck && electron-vite build",
-    "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
@@ -33,11 +32,11 @@
     "@electron-toolkit/eslint-config-ts": "^1.0.1",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@vitejs/plugin-vue": "^5.0.4",
-    "electron": "^28.2.0",
     "electron-builder": "^24.13.3",
     "electron-vite": "^2.0.0",
     "layout": "workspace:^",
     "translate": "workspace:^",
+    "unplugin-element-plus": "^0.8.0",
     "vite-plugin-inspect": "^0.8.4"
   }
 }
