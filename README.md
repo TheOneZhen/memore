@@ -23,6 +23,10 @@ By refining the grranularity of packages, we can maximize support for Turbo perf
 
 Event Bus
 
+## SPA or SSR?
+
+Use SPA development first, then consider whether to migrate SSR.
+
 ## function list
 
 ## Unit(components & utils) Rules

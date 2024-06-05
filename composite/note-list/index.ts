@@ -1,6 +1,11 @@
 import NoteListButton from './src/NoteListButton.vue'
 import NoteList from './src/NoteList.vue'
 import NoteListItem from './src/NoteListItem.vue'
+
+export interface NoteListProps {
+  data: Array<NoteListItemProps>
+  openNote: (id: NoteListItemProps['id']) => void
+}
 export interface NoteListItemProps {
   id: string
   title: string
@@ -8,13 +13,6 @@ export interface NoteListItemProps {
   icon?: string
   remotes: number
   locals: number
-  openNote: (id: NoteListItemProps['id']) => void
 }
 
-export default function () {
-  return {
-    NoteListButton,
-    NoteList,
-    NoteListItem,
-  }
-}
+export { NoteList, NoteListButton, NoteListItem }

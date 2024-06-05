@@ -2,12 +2,11 @@
 import { FunctionItem } from 'function-unit'
 import type { NoteListItemProps } from '../'
 
-const { title, description, icon, id, openNote } =
-  defineProps<NoteListItemProps>()
+const { title, description, icon } = defineProps<NoteListItemProps>()
 </script>
 
 <template>
-  <function-item :description="description" @click="openNote(id)">
+  <function-item :description="description">
     <el-icon v-if="icon">
       <img :src="icon" />
     </el-icon>

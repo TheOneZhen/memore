@@ -19,7 +19,7 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
-    "types": [],
+    "types": ["element-plus/global"],
     "rootDir": ".",
     "paths": {
       "@apps": ["apps/*"],
