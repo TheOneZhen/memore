@@ -1,12 +1,9 @@
 <script lang="ts" setup>
-import PcLayout from 'layout'
-import TestPhase from './TestPhase.vue'
+import MemoreLayout from 'layout'
 </script>
 
 <template>
-  <pc-layout />
-  <div>this is tetst</div>
-  <TestPhase />
+  <MemoreLayout />
 </template>
 
 <style lang="scss"></style>

@@ -1,48 +1,57 @@
 import { resolve } from 'path'
-import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
+import {
+  type UserConfigExport,
+  defineConfig,
+  externalizeDepsPlugin,
+} from 'electron-vite'
 import viteVuePlugin from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 
-/**
- * Electron-vite provides many default configurations, and if you don't pay
- * attention to them, it may cause some issues.
- *
- * https://cn-evite.netlify.app/config/
- *
- */
-export default defineConfig({
-  main: {
-    plugins: [
-      externalizeDepsPlugin(),
-      UnoCSS({ configFile: '../../uno.config.ts' }),
-    ],
-    build: {
-      lib: {
-        entry: 'main/index.ts',
+export default defineConfig(() => {
+  const host = '127.0.0.1'
+  const port = 3000
+  const config: UserConfigExport = {
+    main: {
+      plugins: [
+        externalizeDepsPlugin(),
+        ElementPlus({}),
+        UnoCSS({ configFile: '../../uno.config.ts' }),
+      ],
+      build: {
+        lib: {
+          entry: 'main/index.ts',
+        },
       },
     },
-  },
-  preload: {
-    plugins: [externalizeDepsPlugin()],
-    build: {
-      lib: {
-        entry: 'preload/index.ts',
+    preload: {
+      plugins: [externalizeDepsPlugin()],
+      build: {
+        lib: {
+          entry: 'preload/index.ts',
+        },
       },
     },
-  },
-  renderer: {
-    // keep web dev style
-    root: 'src',
-    resolve: {
-      alias: {
-        '@': resolve('src'),
+    renderer: {
+      // keep web dev style
+      root: 'src',
+      server: {
+        host,
+        port,
       },
-    },
-    build: {
-      rollupOptions: {
-        input: 'index.html',
+      resolve: {
+        alias: {
+          '@': resolve('src'),
+        },
       },
+      build: {
+        rollupOptions: {
+          input: 'index.html',
+        },
+      },
+      plugins: [viteVuePlugin()],
     },
-    plugins: [viteVuePlugin()],
-  },
+  }
+
+  return config
 })
