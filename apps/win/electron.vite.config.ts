@@ -13,11 +13,7 @@ export default defineConfig(() => {
   const port = 3000
   const config: UserConfigExport = {
     main: {
-      plugins: [
-        externalizeDepsPlugin(),
-        ElementPlus({}),
-        UnoCSS({ configFile: '../../uno.config.ts' }),
-      ],
+      plugins: [externalizeDepsPlugin()],
       build: {
         lib: {
           entry: 'main/index.ts',
@@ -49,7 +45,11 @@ export default defineConfig(() => {
           input: 'index.html',
         },
       },
-      plugins: [viteVuePlugin()],
+      plugins: [
+        viteVuePlugin(),
+        ElementPlus({}),
+        UnoCSS({ configFile: '../../uno.config.ts' }),
+      ],
     },
   }
 

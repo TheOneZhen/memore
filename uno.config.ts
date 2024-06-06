@@ -5,7 +5,7 @@ export default defineConfig({
     presetUno(),
     presetAttributify(),
     presetIcons({
-      prefix: 'icon',
+      prefix: 'icon-',
       warn: true,
       cdn: 'https://esm.sh/',
     }),
