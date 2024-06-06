@@ -23,7 +23,6 @@ export function createMainWindow() {
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
     mainWindow.webContents.openDevTools({ mode: 'right' })
-    // load vue devtools
   } else mainWindow.loadFile(join(__dirname, '../index.html'))
 
   return mainWindow
