@@ -6,6 +6,8 @@ export function createMainWindow() {
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    minWidth: 400,
+    minHeight: 400,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
@@ -22,7 +24,7 @@ export function createMainWindow() {
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-    mainWindow.webContents.openDevTools({ mode: 'right' })
+    // mainWindow.webContents.openDevTools({ mode: 'right' })
   } else mainWindow.loadFile(join(__dirname, '../index.html'))
 
   return mainWindow

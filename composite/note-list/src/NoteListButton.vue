@@ -2,8 +2,6 @@
 import { FunctionItem } from 'function-unit'
 import { ElIcon, ElTooltip } from 'element-plus'
 import { prefix } from './common'
-import 'element-plus/es/components/icon/style/css'
-import 'element-plus/es/components/tooltip/style/css'
 </script>
 
 <template>
