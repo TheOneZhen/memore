@@ -22,9 +22,7 @@
     "types": ["element-plus/global"],
     "rootDir": ".",
     "paths": {
-      "@apps": ["apps/*"],
-      "@packages": ["packages/*"],
-      "@composite": ["composite/*"]
+      "*": ["apps/*", "packages/*", "composite/*"]
     }
   },
   "include": ["packages", "apps", "composite"],
