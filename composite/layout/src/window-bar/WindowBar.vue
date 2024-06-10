@@ -3,36 +3,35 @@ import { ref } from 'vue'
 import { NoteList, NoteListButton } from 'note-list'
 import { ElDialog, ElIcon } from 'element-plus'
 import type { Component } from 'vue'
+import { GitVersionListButton } from 'git-version-list'
 
 const dialogContent = ref<null | Component>(null)
 const isDialogShow = ref(false)
 
 function handleNoteListButton() {
-  console.log('run here')
   dialogContent.value = NoteList
   isDialogShow.value = true
 }
 </script>
 
 <template>
-  <div class="window-bar" @click="handleNoteListButton">
+  <div class="window-bar">
     <div class="window-bar-col1">
       <NoteListButton />
+      <GitVersionListButton />
     </div>
-    <div class="window-bar-col2">
-      <el-icon icon-charm:link />
-    </div>
+    <div class="window-bar-col2">ElIcon icon-charm:link /></div>
     <div class="window-bar-col3">{{ 'this is title!' }}</div>
     <div class="window-bar-col4">
-      <el-icon icon-charm:sun />
-      <el-icon icon-charm:sun />
-      <el-icon icon-charm:sun />
+      <ElIcon icon-charm:sun />
+      <ElIcon icon-charm:sun />
+      <ElIcon icon-charm:sun />
     </div>
     <div class="window-bar-col5">
-      <el-icon icon-mi:remove />
-      <el-icon icon-mi:expand />
+      <ElIcon icon-mi:remove />
+      <ElIcon icon-mi:expand />
       <!-- mi:minimize -->
-      <el-icon icon-mi:close />
+      <ElIcon icon-mi:close />
     </div>
   </div>
   <ElDialog

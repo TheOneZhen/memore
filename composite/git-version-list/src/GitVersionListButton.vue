@@ -7,7 +7,7 @@ import { prefix } from './common'
 <template>
   <ElTooltip :content="prefix">
     <FunctionItem>
-      <ElIcon icon-line-md:menu />
+      <ElIcon icon-line-md:github />
       <span>{{ prefix }}</span>
     </FunctionItem>
   </ElTooltip>

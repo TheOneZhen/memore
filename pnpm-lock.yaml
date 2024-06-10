@@ -15,9 +15,6 @@ importers:
       '@element-plus/eslint-config':
         specifier: ^0.0.20240517
         version: 0.0.20240517(eslint@8.57.0)
-      '@rollup/pluginutils':
-        specifier: ^5.1.0
-        version: 5.1.0
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -78,9 +75,6 @@ importers:
       unocss:
         specifier: ^0.60.3
         version: 0.60.3(postcss@8.4.38)(vite@5.2.11)
-      unplugin:
-        specifier: ^1.10.1
-        version: 1.10.1
       unplugin-element-plus:
         specifier: ^0.8.0
         version: 0.8.0
@@ -139,8 +133,17 @@ importers:
         specifier: ^0.8.4
         version: 0.8.4(vite@5.2.12)
 
+  composite/git-version-list:
+    devDependencies:
+      function-unit:
+        specifier: workspace:^
+        version: link:../../packages/function-unit
+
   composite/layout:
     devDependencies:
+      git-version-list:
+        specifier: workspace:^
+        version: link:../git-version-list
       note-list:
         specifier: workspace:^
         version: link:../note-list
