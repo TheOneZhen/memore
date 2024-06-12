@@ -22,7 +22,6 @@
     "@types/prompts": "^2.4.9",
     "@vueuse/core": "^10.9.0",
     "commander": "^12.0.0",
-    "electron": "^28.3.3",
     "element-plus": "^2.7.3",
     "eslint": "^8.57.0",
     "eslint-define-config": "^2.1.0",

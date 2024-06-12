@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 import { NoteList, NoteListButton } from 'note-list'
 import { ElDialog, ElIcon } from 'element-plus'
-import type { Component } from 'vue'
 import { GitVersionListButton } from 'git-version-list'
+import type { Component } from 'vue'
 
 const dialogContent = ref<null | Component>(null)
 const isDialogShow = ref(false)
@@ -20,7 +20,7 @@ function handleNoteListButton() {
       <NoteListButton />
       <GitVersionListButton />
     </div>
-    <div class="window-bar-col2">ElIcon icon-charm:link /></div>
+    <div class="window-bar-col2"><ElIcon icon-charm:link /></div>
     <div class="window-bar-col3">{{ 'this is title!' }}</div>
     <div class="window-bar-col4">
       <ElIcon icon-charm:sun />
