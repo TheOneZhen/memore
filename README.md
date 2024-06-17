@@ -43,3 +43,4 @@ Use SPA development first, then consider whether to migrate SSR.
 
 - Users use one external device to edit content on different platforms.
 - What you see is what you get.
+
