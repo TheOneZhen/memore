@@ -1,23 +1,11 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { ElDialog, ElIcon } from 'element-plus'
-import WindowBar from './window-bar/WindowBar.vue'
-
-const isDialogShow = ref(false)
+import { WindowBar } from './window-bar'
+import { SiderBar } from './sider-bar'
 </script>
 
 <template>
   <WindowBar />
-  <ElDialog
-    v-model="isDialogShow"
-    :modal="false"
-    append-to-body
-    :lock-scroll="false"
-    show-close
-    draggable
-  >
-    <component :is="dialogContent" />
-  </ElDialog>
+  <SiderBar />
 </template>
 
 <style lang="scss"></style>

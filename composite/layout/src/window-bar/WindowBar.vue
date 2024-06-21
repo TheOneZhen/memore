@@ -1,24 +1,17 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { NoteList, NoteListButton } from 'note-list'
-import { ElDialog, ElIcon } from 'element-plus'
-import { GitVersionListButton } from 'git-version-list'
-import type { Component } from 'vue'
+import { ElIcon } from 'element-plus'
+import { GitVersionList, GitVersionListButton } from 'git-version-list'
+import { UseSiderbarStore } from '../sider-bar'
 
-const dialogContent = ref<null | Component>(null)
-const isDialogShow = ref(false)
-
-function handleNoteListButton() {
-  dialogContent.value = NoteList
-  isDialogShow.value = true
-}
+const { add } = UseSiderbarStore()
 </script>
 
 <template>
   <div class="window-bar">
     <div class="window-bar-col1">
-      <NoteListButton />
-      <GitVersionListButton />
+      <NoteListButton @click="add(NoteList)" />
+      <GitVersionListButton @click="add(GitVersionList)" />
     </div>
     <div class="window-bar-col2"><ElIcon icon-charm:link /></div>
     <div class="window-bar-col3">{{ 'this is title!' }}</div>
@@ -34,16 +27,6 @@ function handleNoteListButton() {
       <ElIcon icon-mi:close />
     </div>
   </div>
-  <ElDialog
-    v-model="isDialogShow"
-    :modal="false"
-    append-to-body
-    :lock-scroll="false"
-    show-close
-    draggable
-  >
-    <component :is="dialogContent" />
-  </ElDialog>
 </template>
 
 <style lang="scss">

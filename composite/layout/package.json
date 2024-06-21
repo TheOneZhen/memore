@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "git-version-list": "workspace:^",
-    "note-list": "workspace:^"
+    "note-list": "workspace:^",
+    "pinia": "^2.1.7"
   }
 }

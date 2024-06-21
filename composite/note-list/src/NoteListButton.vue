@@ -5,10 +5,10 @@ import { prefix } from './common'
 </script>
 
 <template>
-  <ElTooltip :content="prefix">
-    <FunctionItem>
+  <FunctionItem>
+    <ElTooltip :content="prefix">
       <ElIcon icon-line-md:menu />
       <span>{{ prefix }}</span>
-    </FunctionItem>
-  </ElTooltip>
+    </ElTooltip>
+  </FunctionItem>
 </template>

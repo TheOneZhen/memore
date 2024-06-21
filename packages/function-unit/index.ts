@@ -1,5 +1,5 @@
-import A from './src/FunctionContainer.vue'
-import B from './src/FunctionItem.vue'
+export { default as FunctionContainer } from './src/FunctionContainer.vue'
+export { default as FunctionItem } from './src/FunctionItem.vue'
 
 export interface FunctionItemProps {
   initial?: number
@@ -7,6 +7,3 @@ export interface FunctionItemProps {
   min?: number
   isConstant?: boolean
 }
-
-export const FunctionContainer = A
-export const FunctionItem = B

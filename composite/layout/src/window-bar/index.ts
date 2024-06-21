@@ -1,3 +1,1 @@
-// 菜单包含的工具有，异步请求的
-// 获取目录列表
-// 获取git账户
+export { default as WindowBar } from './WindowBar.vue'
