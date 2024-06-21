@@ -2,17 +2,21 @@
 import { NoteList, NoteListButton } from 'note-list'
 import { ElIcon } from 'element-plus'
 import { GitVersionList, GitVersionListButton } from 'git-version-list'
+import { FunctionContainer } from 'function-unit'
 import { UseSiderbarStore } from '../sider-bar'
 
 const { add } = UseSiderbarStore()
+/**
+ * 这里写tooltips
+ */
 </script>
 
 <template>
   <div class="window-bar">
-    <div class="window-bar-col1">
+    <FunctionContainer>
       <NoteListButton @click="add(NoteList)" />
       <GitVersionListButton @click="add(GitVersionList)" />
-    </div>
+    </FunctionContainer>
     <div class="window-bar-col2"><ElIcon icon-charm:link /></div>
     <div class="window-bar-col3">{{ 'this is title!' }}</div>
     <div class="window-bar-col4">

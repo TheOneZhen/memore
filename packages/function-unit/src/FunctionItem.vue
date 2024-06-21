@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { inject, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { ContainerSizeKey } from './common'
 import type { FunctionItemProps } from '../'
@@ -12,39 +12,43 @@ const {
 } = defineProps<FunctionItemProps>()
 const parentRef = ref<HTMLDivElement>()
 const size = inject(ContainerSizeKey, ref(initial))
+const children = new Array<Element>()
 
-isConstant &&
-  watchDebounced(
-    size,
-    (newSize) => {
-      newSize = Math.max(min, Math.min(newSize, max))
-      const parentDOM = parentRef.value
+!isConstant &&
+  watchDebounced(size, resetChildren, {
+    debounce: 500,
+    maxWait: 1000,
+  })
 
-      if (!parentDOM) return
+function resetChildren(newSize: number, oldSize: number) {
+  newSize = Math.max(min, Math.min(newSize, max))
+  if (newSize === oldSize) return
+  if (newSize > oldSize) {
+    while (oldSize < newSize) {
+      const node = children[oldSize++]
+      node && parentRef.value?.appendChild(node)
+    }
+  } else {
+    while (newSize < oldSize) {
+      const node = children[newSize++]
+      node && parentRef.value?.removeChild(node)
+    }
+  }
+}
 
-      const childrenDOM = Array.from(parentDOM.children)
+onMounted(() => {
+  const parentDOM = parentRef.value
 
-      if (childrenDOM.length === 0) return
+  if (!parentDOM) return
 
-      childrenDOM.forEach((dom, index) => {
-        Object.assign(
-          (dom as HTMLElement).style,
-          index >= newSize
-            ? {
-                flexBasis: '0',
-                overflow: 'hidden',
-              }
-            : {
-                flexBasis: 'auto',
-              },
-        )
-      })
-    },
-    {
-      debounce: 500,
-      maxWait: 1000,
-    },
-  )
+  const childrenDOM = Array.from(parentDOM.children)
+
+  if (childrenDOM.length === 0) return
+
+  children.push(...childrenDOM)
+
+  resetChildren(size.value, children.length)
+})
 </script>
 
 <template>

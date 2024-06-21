@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "function-unit": "workspace:^",
     "git-version-list": "workspace:^",
     "note-list": "workspace:^",
     "pinia": "^2.1.7"

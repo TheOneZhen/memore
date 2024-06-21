@@ -141,6 +141,9 @@ importers:
 
   composite/layout:
     devDependencies:
+      function-unit:
+        specifier: workspace:^
+        version: link:../../packages/function-unit
       git-version-list:
         specifier: workspace:^
         version: link:../git-version-list

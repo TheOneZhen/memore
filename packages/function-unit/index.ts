@@ -7,3 +7,7 @@ export interface FunctionItemProps {
   min?: number
   isConstant?: boolean
 }
+
+export interface FunctionContainerProps {
+  initialSize?: number
+}
