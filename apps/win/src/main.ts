@@ -1,6 +1,3 @@
-import { createApp } from 'vue'
-import App from 'layout'
-import 'virtual:uno.css'
+import app from 'layout'
 
-const app = createApp(App)
 app.mount('#app')
