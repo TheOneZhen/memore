@@ -1,21 +1,26 @@
 <script lang="ts" setup>
-import { NoteList, NoteListButton } from 'note-list'
-import { ElIcon } from 'element-plus'
-import { GitVersionList, GitVersionListButton } from 'git-version-list'
+import { NoteList, NoteListButton, NoteListPrefix } from 'note-list'
+import { ElIcon, ElTooltip } from 'element-plus'
+import {
+  GitVersionList,
+  GitVersionListButton,
+  GitVersionListPrefix,
+} from 'git-version-list'
 import { FunctionContainer } from 'function-unit'
 import { UseSiderbarStore } from '../sider-bar'
 
 const { add } = UseSiderbarStore()
-/**
- * 这里写tooltips
- */
 </script>
 
 <template>
   <div class="window-bar">
     <FunctionContainer>
-      <NoteListButton @click="add(NoteList)" />
-      <GitVersionListButton @click="add(GitVersionList)" />
+      <ElTooltip :content="NoteListPrefix">
+        <NoteListButton @click="add(NoteList)" />
+      </ElTooltip>
+      <ElTooltip :content="GitVersionListPrefix">
+        <GitVersionListButton @click="add(GitVersionList)" />
+      </ElTooltip>
     </FunctionContainer>
     <div class="window-bar-col2"><ElIcon icon-charm:link /></div>
     <div class="window-bar-col3">{{ 'this is title!' }}</div>
@@ -48,6 +53,9 @@ const { add } = UseSiderbarStore()
   > * {
     -webkit-app-region: no-drag;
     cursor: pointer;
+  }
+  .el-icon {
+    font-size: 24px;
   }
 }
 </style>

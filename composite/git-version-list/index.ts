@@ -1,6 +1,7 @@
-import GitVersionListButton from './src/GitVersionListButton.vue'
-import GitVersionList from './src/GitVersionList.vue'
-import GitVersionListItem from './src/GitVersionListItem.vue'
+export { default as GitVersionListButton } from './src/GitVersionListButton.vue'
+export { default as GitVersionList } from './src/GitVersionList.vue'
+export { default as GitVersionListItem } from './src/GitVersionListItem.vue'
+export { prefix as GitVersionListPrefix } from './src/common'
 
 export interface GitVersionListProps {
   data: Array<GitVersionListItemProps>
@@ -13,5 +14,3 @@ export interface GitVersionListItemProps {
   description: string
   icon?: string
 }
-
-export { GitVersionList, GitVersionListItem, GitVersionListButton }
