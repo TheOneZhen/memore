@@ -33,7 +33,6 @@ const { add } = UseSiderbarStore()
       <ElIcon icon-mi:remove />
       <ElIcon icon-mi:expand />
       <!-- mi:minimize -->
-
       <ElIcon icon-mi:close />
     </div>
   </div>
