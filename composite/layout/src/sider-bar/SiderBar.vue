@@ -1,19 +1,12 @@
 <script lang="ts" setup>
-import { ElDialog, ElTabPane, ElTabs } from 'element-plus'
+import { ElDrawer, ElTabPane, ElTabs } from 'element-plus'
 import { UseSiderbarStore } from './state'
 
 const useSiderbarStore = UseSiderbarStore()
 </script>
 
 <template>
-  <ElDialog
-    v-model="useSiderbarStore.isShow"
-    :modal="false"
-    append-to-body
-    :lock-scroll="false"
-    show-close
-    draggable
-  >
+  <ElDrawer v-model="useSiderbarStore.isShow" append-to-body direction="ltr">
     <ElTabs>
       <ElTabPane
         v-for="content in useSiderbarStore.contents"
@@ -23,7 +16,7 @@ const useSiderbarStore = UseSiderbarStore()
         <component :is="content" />
       </ElTabPane>
     </ElTabs>
-  </ElDialog>
+  </ElDrawer>
 </template>
 
 <style lang="scss"></style>

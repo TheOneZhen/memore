@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { FunctionItem } from 'function-unit'
-import type { NoteListItemProps } from '../'
 import { ElIcon } from 'element-plus'
+import type { NoteListItemProps } from '../'
 
 const { title, description, icon } = defineProps<NoteListItemProps>()
 </script>
