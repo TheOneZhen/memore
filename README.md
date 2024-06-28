@@ -19,6 +19,16 @@ UI and some utils like markdown parser, cahcing.
 
 By refining the grranularity of packages, we can maximize support for Turbo performance.
 
+## Platform & Solutions
+
+Memore rendering is dominated by SSR, 
+
+- PC(Win, Linux, OS X): Electron as a container, Nuxt.js improves contents.
+- Browser: 提供一个服务端用于数据解析，但是不提供存储服务。内容存储由浏览器完成。
+- Small Programs(WeChat, DingTalk...)：提供一个服务端并挂载到小程序平台（依据服务大小与自动化相关问题最后再既定服务挂载位置），但是不提供存储服务。内容存储由小程序依赖提供的API。
+- Mobile(Android, IOS, IpadOS...)
+- Plugin(Browser, Vscode, WebStorm)
+
 ## Component communication mode
 
 Event Bus
