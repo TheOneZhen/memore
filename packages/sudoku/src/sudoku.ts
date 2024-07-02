@@ -14,13 +14,37 @@ export class Sudoku {
     )
     this.rows = Array.from({ length: size }).map(() => new Set<number>())
     this.cols = Array.from({ length: size }).map(() => new Set<number>())
+    this.init()
   }
 
-  init() {}
+  init() {
+    for (let row = 0; row < this.size; ++row) {
+      const rowSet = this.rows[row]
 
-  insertRandomNumber() {}
+      for (let col = 0; col < this.size; ++col) {
+        const colSet = this.cols[col]
 
+        this.container[row][col] = this.generateRandomNumber(rowSet, colSet)
+      }
+    }
+  }
+
+  generateRandomNumber(rowSet: Set<number>, colSet: Set<number>) {
+    let res = Math.floor(Math.random() * (this.size - 1)) + 1
+
+    while (rowSet.has(res) || colSet.has(res)) res = (res + 1) % this.size
+
+    rowSet.add(res)
+    colSet.add(res)
+    return res
+  }
+  /**
+   * prompt one
+   */
   help() {}
 
-  autoResolve() {}
+  solve() {}
 }
+
+const test = new Sudoku(9, DIFFICUTLY.ESAY)
+console.log(test.container)
