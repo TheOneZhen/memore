@@ -1,3 +1,7 @@
+export enum Errors {
+  InternalLogicError,
+}
+
 export enum DIFFICUTLY {
   ESAY = 80,
   MEDIUM = 50,

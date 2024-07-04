@@ -226,6 +226,8 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(eslint@8.57.0)
 
+  packages/sudoku: {}
+
   packages/test: {}
 
   packages/translate:
