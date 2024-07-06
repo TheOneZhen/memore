@@ -1,5 +1,4 @@
-import { DIFFICUTLY } from './src/common'
-import { Sudoku } from './src/sudoku'
+import { Difficulty, Sudoku } from './src/sudoku'
 
-const test = new Sudoku(9, DIFFICUTLY.ESAY)
-console.log(test.container)
+const test = new Sudoku(9, Difficulty.esay, false)
+test.printBoard()

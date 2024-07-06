@@ -7,6 +7,6 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "test": "tsc ./index.ts --outDir ./dist/ && node ./dist/index.js"
+    "test": "tsc ./index.ts --downlevelIteration --outDir ./dist/ && node ./dist/index.js"
   }
 }

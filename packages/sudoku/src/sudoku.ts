@@ -23,6 +23,7 @@ type RecordType = Set<number>
 export class Sudoku {
   private readonly defaultDifficulty = Difficulty.medium // 默认难度
   private readonly defaultSize = 9 // 默认棋盘大小
+  private readonly gapChar = ' ' // 模板间隔符号
   size: number // 棋盘边长
   difficulty: Difficulty // 难度
   squares: number // 格子数量
@@ -40,6 +41,11 @@ export class Sudoku {
    * @param difficulty
    */
   constructor(size: number, difficulty: Difficulty)
+  /**
+   * 是否进行校验
+   * @param validate
+   */
+  constructor(size: number, difficulty: Difficulty, validate: boolean)
   constructor(
     templateOrSize: number | string,
     difficulty?: number,
@@ -59,13 +65,19 @@ export class Sudoku {
       (_, index) => index + 1,
     )
     validate && this.validate()
+
+    this.generate()
   }
 
   generate() {
     const rowRecord = this.generateRecord()
     const colRecord = this.generateRecord()
     const blockRecord = this.generateRecord()
-    // 生成随机一些数字代表后续填充数字的位置
+    const positions = this.rangeRandomPosition()
+
+    this.board = Array.from({ length: this.size }).map(() =>
+      Array.from<number>({ length: this.size }).fill(0),
+    )
     /**
      * 当数字插入失败的时候，进行进行回溯
      * @param row 行索引
@@ -73,11 +85,14 @@ export class Sudoku {
      * @returns 需要回溯的次数，当第一列数字插入失败的时候，此时是由于列元素和块元素重复导致的，所以最优选择是回到上一列
      */
     const backTrack = (row: number, col: number): number => {
-      // 获取可以插入的数字
+      if (row === this.size) return 0
+
       const rowSet = rowRecord[row]
       const colSet = colRecord[col]
       const blockSet = blockRecord[this.getBlockIndexByRowsAndCols(row, col)]
+      // 获取可以插入的数字
       const candidates = this.getCandidates(rowSet, colSet, blockSet)
+      const position = row * this.size + col
       const cancelInsert = (val: number) => {
         rowSet.delete(val)
         colSet.delete(val)
@@ -87,7 +102,7 @@ export class Sudoku {
         rowSet.add(val)
         colSet.add(val)
         blockSet.add(val)
-        this.board[row][col] = val
+        if (positions.has(position)) this.board[row][col] = val
       }
 
       while (true) {
@@ -100,7 +115,9 @@ export class Sudoku {
         insert(value)
 
         const next =
-          col >= this.size ? backTrack(row + 1, 0) : backTrack(row, col + 1)
+          col === this.size - 1
+            ? backTrack(row + 1, 0)
+            : backTrack(row, col + 1)
 
         if (next === 0) break
         cancelInsert(value)
@@ -164,18 +181,20 @@ export class Sudoku {
   }
 
   private rangeValue(max: number, min = 0) {
-    return Math.random() * (max - min) + min
+    return Math.floor(Math.random() * (max - min) + min)
   }
-
+  /**
+   * 生成随机数字代表后续填充数字的位置
+   */
   private rangeRandomPosition() {
     let count =
       this.squares - Math.trunc((this.squares * this.difficulty) / 100)
     const positions = Array.from({ length: this.squares }).map(
-      (_, index) => index + 1,
+      (_, index) => index,
     )
     while (count > 0) {
       const index = this.rangeValue(positions.length - 1)
-      positions.splice(index - 1)
+      positions.splice(index, 1)
       count--
     }
     return new Set(positions)
@@ -184,5 +203,18 @@ export class Sudoku {
   private getBlockIndexByRowsAndCols(row: number, col: number) {
     const sl = Math.sqrt(this.size)
     return Math.trunc(row / sl) * sl + Math.trunc(col / sl)
+  }
+
+  printBoard() {
+    let content = ''
+    const maxNumberLen = `${this.squares}`.length
+
+    for (const row of this.board) {
+      for (const col of row)
+        content += `${col}${this.gapChar}`.padStart(maxNumberLen, this.gapChar)
+      content += '\n'
+    }
+    console.log(content)
+    return content
   }
 }

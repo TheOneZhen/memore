@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "temp",
-    "sourceMap": false,
+    "sourceMap": true,
     "target": "ESNext",
     "newLine": "LF",
     "useDefineForClassFields": false,
