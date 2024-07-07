@@ -16,20 +16,23 @@ export enum Errors {
 }
 
 type RecordType = Set<number>
+type BoardType = Array<Array<number>>
 
 /**
  * 每次实例，都是一局新的游戏
  */
 export class Sudoku {
-  private readonly defaultDifficulty = Difficulty.medium // 默认难度
-  private readonly defaultSize = 9 // 默认棋盘大小
-  private readonly gapChar = ' ' // 模板间隔符号
-  size: number // 棋盘边长
-  difficulty: Difficulty // 难度
-  squares: number // 格子数量
-  board: Array<Array<number>> // 棋盘矩阵
-  numberTemplate: Array<number> // 数字模板
-
+  protected defaultDifficulty = Difficulty.medium // 默认难度
+  protected defaultSize = 9 // 默认棋盘大小
+  protected gapChar = ' ' // 棋盘矩阵打印时的间隔符号
+  size: number = this.defaultSize // 棋盘边长
+  difficulty: Difficulty = this.defaultDifficulty // 难度
+  board: BoardType = [[]] // 棋盘矩阵，0代表没有填充元素
+  protected answer: BoardType = [[]] // 答案矩阵，-1代表board中的填充错误
+  // 格子数量
+  get squares() {
+    return this.size * this.size
+  }
   /**
    * 当传入字符串模板时，会解析字符串并还原棋盘
    * @param template
@@ -48,10 +51,9 @@ export class Sudoku {
   constructor(size: number, difficulty: Difficulty, validate: boolean)
   constructor(
     templateOrSize: number | string,
-    difficulty?: number,
+    difficulty: number = 0,
     validate = true,
   ) {
-    this.board = [[]]
     if (typeof templateOrSize === 'string') {
       const result = this.parseTemplate(templateOrSize)
       templateOrSize = result.size
@@ -59,14 +61,9 @@ export class Sudoku {
       this.board = result.board
     }
     this.size = templateOrSize
-    this.difficulty = difficulty || 0
-    this.squares = templateOrSize * templateOrSize
-    this.numberTemplate = Array.from({ length: this.size }).map(
-      (_, index) => index + 1,
-    )
-    validate && this.validate()
-
+    this.difficulty = difficulty
     this.generate()
+    validate && this.validate()
   }
 
   generate() {
@@ -103,6 +100,7 @@ export class Sudoku {
         colSet.add(val)
         blockSet.add(val)
         if (positions.has(position)) this.board[row][col] = val
+        this.answer[row][col] = val
       }
 
       while (true) {
@@ -131,9 +129,6 @@ export class Sudoku {
     backTrack(0, 0)
   }
 
-  generateRecord(): RecordType[] {
-    return Array.from({ length: this.size }).map(() => new Set())
-  }
   /**
    * 根据记录获取候选数字
    * @param records 已经被选取数字的记录
@@ -143,36 +138,80 @@ export class Sudoku {
     const all: RecordType = new Set()
 
     for (const record of records) for (const num of record) all.add(num)
-    return this.numberTemplate.filter((num) => !all.has(num))
+    return Array.from({ length: this.size })
+      .map((_, index) => index + 1)
+      .filter((num) => !all.has(num))
   }
   /**
-   * 参数校验，校验应该是一种模式，此模式能够提供稳定的游戏模式。
+   * 参数校验，校验应该是一种模式，此模式能够提供稳定的游戏。
+   * 执行参数校验后会直接修改现有属性。
    */
   validate() {
-    this.size = this.validateSize(this.size)
-    this.difficulty = this.validateDifficulty(this.difficulty)
-    this.squares = this.size * this.size
-    this.numberTemplate = Array.from({ length: this.size }).map(
-      (_, index) => index + 1,
-    )
+    this.validateSize()
+    this.validateDifficulty()
+    this.validateBoard()
+    this.validateAnswer()
   }
 
-  private validateSize(size: typeof this.size) {
-    return Number.isInteger(size) &&
-      size > 1 &&
-      Number.isInteger(Math.sqrt(size))
-      ? size
-      : this.defaultSize
+  protected validateSize() {
+    const size = this.size
+    this.size =
+      Number.isInteger(size) && size > 1 && Number.isInteger(Math.sqrt(size))
+        ? size
+        : this.defaultSize
   }
 
-  private validateDifficulty(difficulty: number): Difficulty {
-    return difficulty in Difficulty ? Difficulty.esay : this.defaultDifficulty
+  protected validateDifficulty() {
+    this.difficulty =
+      this.difficulty in Difficulty ? this.difficulty : this.defaultDifficulty
   }
   /**
-   * 根据字符串还原模板
+   * 校验棋盘尺寸是否符合
    */
-  private parseTemplate(template: string) {
-    if (template) template = `${template}`
+  protected validateBoard() {
+    const reset = () => {
+      this.board = Array.from({ length: this.size }).map(() =>
+        Array.from<number>({ length: this.size }).fill(0),
+      )
+    }
+
+    if (!Array.isArray(this.board) || this.board.length !== this.size) reset()
+    else {
+      for (const rows of this.board) {
+        if (!Array.isArray(rows) || rows.length !== this.size) {
+          reset()
+          break
+        }
+        for (let i = 0; i < this.size; ++i) {
+          if (typeof rows[i] !== 'number') {
+            rows[i] = Number.isNaN(+rows[i]) ? 0 : +rows[i]
+          }
+        }
+      }
+    }
+  }
+  /**
+   * 校验答案，首先会对已经填充的内容进行校验，如果用户填入的内容存在错误，对应单元格填充-1。如果不存在错误，补全答案。
+   */
+  protected validateAnswer() {}
+  protected validateCell() {}
+  /**
+   * 根据字符串还原模板
+   * .e.g
+   * ======
+   * esay:4
+   * 1 2 3 4
+   * 3 4 0 0
+   * 2 1 0 0
+   * 4 3 0 0
+   * ======
+   */
+  protected parseTemplate(template: string) {
+    const rows = template.split('\n')
+
+    if (rows.length === 0) return false
+    if (/[a-z]+:\d+/.test(rows[0])) {
+    }
     return {
       size: this.defaultSize,
       difficulty: this.difficulty,
@@ -180,13 +219,17 @@ export class Sudoku {
     }
   }
 
-  private rangeValue(max: number, min = 0) {
+  protected generateRecord(): RecordType[] {
+    return Array.from({ length: this.size }).map(() => new Set())
+  }
+
+  protected rangeValue(max: number, min = 0) {
     return Math.floor(Math.random() * (max - min) + min)
   }
   /**
    * 生成随机数字代表后续填充数字的位置
    */
-  private rangeRandomPosition() {
+  protected rangeRandomPosition() {
     let count =
       this.squares - Math.trunc((this.squares * this.difficulty) / 100)
     const positions = Array.from({ length: this.squares }).map(
@@ -200,13 +243,13 @@ export class Sudoku {
     return new Set(positions)
   }
 
-  private getBlockIndexByRowsAndCols(row: number, col: number) {
+  protected getBlockIndexByRowsAndCols(row: number, col: number) {
     const sl = Math.sqrt(this.size)
     return Math.trunc(row / sl) * sl + Math.trunc(col / sl)
   }
 
   printBoard() {
-    let content = ''
+    let content = `${Difficulty[this.difficulty]}:${this.size}\n`
     const maxNumberLen = `${this.squares}`.length
 
     for (const row of this.board) {
