@@ -207,11 +207,11 @@ export class Sudoku {
    * ======
    */
   protected parseTemplate(template: string) {
-    const rows = template.split('\n')
+    // const rows = template.split('\n')
 
-    if (rows.length === 0) return false
-    if (/[a-z]+:\d+/.test(rows[0])) {
-    }
+    // if (rows.length === 0) return false
+    // if (/[a-z]+:\d+/.test(rows[0])) {
+    // }
     return {
       size: this.defaultSize,
       difficulty: this.difficulty,
