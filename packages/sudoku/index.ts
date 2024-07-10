@@ -1,6 +1,6 @@
 import { Difficulty, Sudoku } from './src/sudoku'
 
-const test = new Sudoku(9, Difficulty.esay, false)
+const test = new Sudoku(9, Difficulty.esay)
 test.printBoard()
 
 // 开始新的游戏，提供默认参数，获取新的棋盘

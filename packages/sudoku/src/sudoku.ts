@@ -37,33 +37,29 @@ export class Sudoku {
    * 当传入字符串模板时，会解析字符串并还原棋盘
    * @param template
    */
-  constructor(template: string)
+  // constructor(template: string)
   /**
    * 或者直接进行新的游戏
    * @param size size in [4, Infinity] && sqrt(size, 2) is integer
    * @param difficulty
    */
-  constructor(size: number, difficulty: Difficulty)
+  // constructor(size: number, difficulty: Difficulty)
   /**
    * 是否进行校验
    * @param validate
    */
-  constructor(size: number, difficulty: Difficulty, validate: boolean)
-  constructor(
-    templateOrSize: number | string,
-    difficulty: number = 0,
-    validate = true,
-  ) {
-    if (typeof templateOrSize === 'string') {
-      const result = this.parseTemplate(templateOrSize)
-      templateOrSize = result.size
-      difficulty = result.difficulty
-      this.board = result.board
-    }
+  // constructor(size: number, difficulty: Difficulty, validate: boolean)
+  constructor(templateOrSize: number, difficulty: number = 0) {
+    // if (typeof templateOrSize === 'string') {
+    //   const result = this.parseTemplate(templateOrSize)
+    //   templateOrSize = result.size
+    //   difficulty = result.difficulty
+    //   this.board = result.board
+    // }
     this.size = templateOrSize
     this.difficulty = difficulty
+    this.validate()
     this.generate()
-    validate && this.validate()
   }
 
   generate() {
@@ -71,10 +67,6 @@ export class Sudoku {
     const colRecord = this.generateRecord()
     const blockRecord = this.generateRecord()
     const positions = this.rangeRandomPosition()
-
-    this.board = Array.from({ length: this.size }).map(() =>
-      Array.from<number>({ length: this.size }).fill(0),
-    )
     /**
      * 当数字插入失败的时候，进行进行回溯
      * @param row 行索引
@@ -182,18 +174,25 @@ export class Sudoku {
           reset()
           break
         }
-        for (let i = 0; i < this.size; ++i) {
-          if (typeof rows[i] !== 'number') {
-            rows[i] = Number.isNaN(+rows[i]) ? 0 : +rows[i]
-          }
-        }
+        // for (let i = 0; i < this.size; ++i) {
+        //   if (typeof rows[i] !== 'number') {
+        //     rows[i] = Number.isNaN(+rows[i]) ? 0 : +rows[i]
+        //   }
+        // }
       }
     }
   }
   /**
    * 校验答案，首先会对已经填充的内容进行校验，如果用户填入的内容存在错误，对应单元格填充-1。如果不存在错误，补全答案。
    */
-  protected validateAnswer() {}
+  protected validateAnswer() {
+    const reset = () => {
+      this.answer = Array.from({ length: this.size }).map(() =>
+        Array.from<number>({ length: this.size }).fill(0),
+      )
+    }
+    reset()
+  }
   protected validateCell() {}
   /**
    * 根据字符串还原模板
@@ -207,9 +206,9 @@ export class Sudoku {
    * ======
    */
   protected parseTemplate(template: string) {
-    // const rows = template.split('\n')
+    const rows = template.split('\n')
 
-    // if (rows.length === 0) return false
+    if (rows.length === 0) return false
     // if (/[a-z]+:\d+/.test(rows[0])) {
     // }
     return {
