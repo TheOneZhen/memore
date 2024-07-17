@@ -178,6 +178,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
 
+  packages/data-structure: {}
+
   packages/electron-vite: {}
 
   packages/event-bus: {}
