@@ -180,6 +180,8 @@ importers:
 
   packages/data-structure: {}
 
+  packages/editor: {}
+
   packages/electron-vite: {}
 
   packages/event-bus: {}
@@ -202,6 +204,8 @@ importers:
       octokit:
         specifier: ^4.0.2
         version: 4.0.2
+
+  packages/nav-menu: {}
 
   packages/parser:
     dependencies:

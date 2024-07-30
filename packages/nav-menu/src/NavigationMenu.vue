@@ -1,29 +1,29 @@
 <script lang="ts" setup>
-import { type Component, ref } from 'vue'
-// 数据校验的事情应该由调用者来完成
-defineProps<{
+import { type Component, computed, ref } from 'vue'
+
+const props = defineProps<{
   scale: number
   children: Component[][]
   mini: Component[][]
   duration: number
 }>()
-const isCollapse = ref(false)
+const isMini = ref(true)
 
 function handleClick() {
-  isCollapse.value = !isCollapse.value
+  isMini.value = !isMini.value
 }
 </script>
 
 <template>
   <div class="container" @click="handleClick">
-    <div v-for="(row, rowIndex) in children" :key="rowIndex">
-      <div v-for="(col, colIndex) in row" :key="colIndex">
-        <template v-if="isCollapse">
-          <component :is="mini[rowIndex][colIndex]" class="mini common" />
-        </template>
-        <template v-else>
-          <component :is="col" class="normal common" />
-        </template>
+    <div v-for="(row, rowIndex) in children" :key="rowIndex" class="rows">
+      <div v-for="(col, colIndex) in row" :key="colIndex" class="cols">
+        <component
+          :is="col"
+          class="common"
+          :class="isMini ? 'mini' : 'normal'"
+          :style="{ 'transition-duration': duration + 'ms' }"
+        />
       </div>
     </div>
   </div>
@@ -34,9 +34,15 @@ function handleClick() {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  .rows {
+    display: flex;
+    .cols {
+    }
+  }
 
   .common {
-    transition-duration: v-bind(duration);
+    transition: transform;
   }
 
   .mini {
@@ -44,7 +50,7 @@ function handleClick() {
   }
 
   .normal {
-    transform: scale(calc(1 / v-bind(scale)));
+    transform: scale(1);
   }
 }
 </style>

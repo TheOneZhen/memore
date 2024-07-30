@@ -1,0 +1,1 @@
+**Utils do not perform any data validation, as it should be handled by the user.**
