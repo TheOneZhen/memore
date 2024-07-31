@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type Component, computed, ref } from 'vue'
+import { type Component, ref } from 'vue'
 
 const props = defineProps<{
   scale: number
