@@ -37,8 +37,6 @@ function handleClick() {
   flex-direction: column;
   .rows {
     display: flex;
-    .cols {
-    }
   }
 
   .common {
